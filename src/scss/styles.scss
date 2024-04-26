@@ -25,7 +25,7 @@ $tablet: 768px;
 
 $headerHeight: 48;
 main{
-    height: calc(100vh - #{$headerHeight}px);
+    min-height: calc(100vh - #{$headerHeight}px);
 }
 
 header{
