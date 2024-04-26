@@ -43,7 +43,8 @@ function RenderCards({data, id, type, genreName, renderAmount}) {
               <Link to={`/collection?type=${type}&genre=${genreName}`}>View all</Link>
              </div>
               
-              <div id="" className="slide grid lg:grid-cols-4 md:grid-cols-2">
+              {/* <div id="" className="slide grid lg:grid-cols-4 md:grid-cols-2"> */}
+              <div id="" className="slide h-[300px] flex overflow-y-hidden overflow-x-scroll lg:overflow-y-initial lg:overflow-x-initial lg:grid lg:grid-cols-4">
 
                 {renderAmount ? (
                   listOfProductsArray.slice(0, Number(renderAmount)).map((item, key) => (

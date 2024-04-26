@@ -44,7 +44,7 @@ function Collections() {
         <div>
             <h1 className='text-center text-xl my-4 cursor-default'>{title}</h1>
             {/* Rendering the product cards */}
-            <div className='grid lg:grid-cols-4 md:grid-cols-2'>
+            <div className='grid lg:grid-cols-4 grid-cols-2'>
                 {queryExist && products.map((item, index) => (
                     <ProductCard key={index} product={item} type={type} /> 
                 ))}
