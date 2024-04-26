@@ -3,12 +3,7 @@ import RootLayout from "../../RootLayout";
 
 function RenderCartItems({basket, setBasket}) {
 
-    const [basketCopy, setBasketCopy] = useState(basket);
     const [isShown, setShown] = useState('block');
-
-    useEffect(() => {
-        setBasketCopy(basket)
-    }, [basket])
 
     const updateInputField = (e, key) => {
         const updatedValue = parseInt(e.target.value);

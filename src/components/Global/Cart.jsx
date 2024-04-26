@@ -5,9 +5,6 @@ import {Link, useOutletContext} from 'react-router-dom'
 
 function Cart({position, basket, setBasket}) {
 
-    // const [addToCart] = useOutletContext()
-
-
     const [plural, setPlural] = useState('Item')
 
     useEffect(() => {
@@ -41,8 +38,8 @@ function Cart({position, basket, setBasket}) {
                         </div>
 
                         {/* <button className='bg-black text-white w-full py-3 mt-[10px]' type='submit'>Checkout</button> */}
-                        {/* <Link className='block text-center bg-black text-white w-full py-3 mt-[10px]' to={'/checkout'}>Checkout</Link> */}
-                        <button className='block text-center bg-black text-white w-full py-3 mt-[10px]' type='submit'>Checkout</button>
+                        <Link className='block text-center bg-black text-white w-full py-3 mt-[10px]' to={'/checkout'}>Checkout</Link>
+                        {/* <button className='block text-center bg-black text-white w-full py-3 mt-[10px]' type='submit'>Checkout</button> */}
                 </form>
             )}
         </div>
