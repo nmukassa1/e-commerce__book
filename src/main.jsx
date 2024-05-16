@@ -23,7 +23,7 @@ const router = createBrowserRouter(
       <Route path='product' element={ <Product /> } />
       {/* <Route path='view-all/:type/:id' element={ <ViewAll /> } /> */}
       <Route path='checkout' element={ <Checkout /> } />
-      <Route path='collection' element={ <Collections /> } />
+      <Route path='collections' element={ <Collections /> } />
       {/* <Route path='product-page' element={ <ProductPage /> } /> */}
     </Route>
   )
