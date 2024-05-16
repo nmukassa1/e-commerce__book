@@ -11,9 +11,6 @@ function RenderCards({data, id, genre, renderAmount}) {
   useEffect(() => {
     filterQuery()
   }, [])
-  useEffect(() => {
-    console.log(products);
-  }, [products])
 
   function filterQuery(){
     let products = [];
