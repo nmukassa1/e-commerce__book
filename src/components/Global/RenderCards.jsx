@@ -44,7 +44,7 @@ function RenderCards({data, id, type, genreName, renderAmount}) {
              </div>
               
               {/* <div id="" className="slide grid lg:grid-cols-4 md:grid-cols-2"> */}
-              <div id="" className="slide h-[300px] flex overflow-y-hidden overflow-x-scroll lg:overflow-y-initial lg:overflow-x-initial lg:grid lg:grid-cols-4">
+              <div id="" className="slide flex overflow-x-scroll lg:grid lg:grid-cols-4">
 
                 {renderAmount ? (
                   listOfProductsArray.slice(0, Number(renderAmount)).map((item, key) => (

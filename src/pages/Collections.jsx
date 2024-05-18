@@ -42,8 +42,9 @@ function Collections() {
 
     return ( 
         <div>
-            <h1 className='text-center text-xl my-4 cursor-default'>{title}</h1>
-            {/* Rendering the product cards */}
+            <p id="collection-page-intro">An assortment of {title && (title.charAt(0).toUpperCase() + title.slice(1).toLowerCase())} books.</p>
+
+            {/* Render product cards */}
             <div className='grid lg:grid-cols-4 grid-cols-2'>
                 {queryExist && products.map((item, index) => (
                     <ProductCard key={index} product={item} type={type} /> 

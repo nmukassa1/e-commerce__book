@@ -5,13 +5,13 @@ function ProductCard({product, type}) {
         <Link to={`/product?name=${product.title}`} onClick={() => {localStorage.setItem('data', JSON.stringify(product))}} key={product.key} className="product-card grow shrink-0 basis-[160px] border-solid border border-black grow shrink-0">
 
           <div id="" className="book-img w-full border-solid border border-black py-5 bg-[#F7F7F7]">
-            <img src={product.img} alt="" className="w-3/4 h-full object-contain mx-auto"/>
+            <img src={product.img} alt="" className="product-card__img w-3/4 h-full object-contain mx-auto aspect-ratio-[.8]"/>
           </div>
 
 
           <div id="" className={`book-info p-3 ${product.quantity === 0 ? `line-through` : ''}`}>
               <div id="book-title">
-                <h1>{product.title}</h1>
+                <h1 className='overflow-y-scroll '>{product.title}</h1>
               </div>
               {/* <div className="book-author">
                 <h3>{product.author.join(' & ')}</h3>

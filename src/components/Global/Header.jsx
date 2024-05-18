@@ -8,7 +8,7 @@ function Header({basket, toggleCart}) {
     return ( 
         <header className='flex items-center justify-center px-8 sticky top-0 bg-white w-screen z-50'>
             <div id="brand" className='relative left-1/2 translate-x-[-50%]'>
-                <Link to="/" className='font-semi-bold text-5xl'>UNWIND</Link>
+                <Link to="/" className='font-semi-bold text-[1.4rem]'>UNWIND</Link>
             </div>
 
             <div id="cart" className='ml-auto'>

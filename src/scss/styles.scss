@@ -26,6 +26,7 @@ $tablet: 768px;
 $headerHeight: 48;
 main{
     min-height: calc(100vh - #{$headerHeight}px);
+    position: relative;
 }
 
 header{
@@ -48,10 +49,74 @@ header{
 .wrapper a:hover{
     color: 	#2BE653;
 }
-.product-card:hover{
-    color: 	#2BE653;
+
+#product-page{
+    display: grid;
+    width: 80%;
+    height: 660px;
+    border: 1px solid;
+    border-radius: 10px;
+    overflow: scroll;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    @media(width > 700px){
+        height: 100%;
+        width: 100%;
+        grid-template-columns: 1fr 1fr;
+        border-radius: 0;
+    }
+
+    &-hero-img-container{
+        @media(width > 700px){
+            border: 1px solid black;
+            background-color: #F7F7F7;
+        }
+    }
+
+    &-hero-img{
+        height: 100%;
+        width: 70%;
+        margin: auto;
+        display: grid;
+        place-content: center;
+    }
+
+    &-info{
+        overflow: scroll;
+        height: 250px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+
+        @media(width > 700px){
+            display: grid;
+            place-content: center;
+            height: initial;
+        }
+    }
 }
 
+.product-card{
+    &:hover{
+        color: 	#2BE653;
+    }
+
+    &__img{
+        aspect-ratio: .8;
+
+        @media(width > 700px){
+            aspect-ratio: 1.2;
+        }
+    }
+}
+
+#collection-page-intro{
+    transform: skewX(-18deg);
+    margin: 10px 0;
+    text-align: center;
+}
 
 .page-height{
     height: 100%;
@@ -68,13 +133,3 @@ input::-webkit-inner-spin-button {
 #synopsis-block p + p{
     margin-top: 1rem;
 }
-/* 
-#synopsis-block::after{
-    content: '';
-    height: 20px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(180, white, black);
-} */
