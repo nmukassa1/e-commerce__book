@@ -21,7 +21,7 @@ function RenderCartItems({basket, setBasket}) {
     };
     
 
-    const updateBasket = (e) => {
+    function updateBasket(e){
         const itemId = parseInt(e.target.parentElement.parentElement.id);
         const item = basket.items.filter(item => item.key === itemId);
         // console.log(item)
@@ -34,7 +34,7 @@ function RenderCartItems({basket, setBasket}) {
 
     }
 
-    const  handleRemoveItemFromBasket = (e) => {
+    function handleRemoveItemFromBasket(e){
         const itemToRemove = parseInt(e.target.parentElement.parentElement.id);
         const newItems = basket.items.filter((item) => item.key != itemToRemove);
         let totalItems = newItems.reduce((prev, current) => prev + current.qty, 0);
@@ -61,10 +61,7 @@ function RenderCartItems({basket, setBasket}) {
                             type="number" 
                             className='border border-black w-[40px] h-[40px] text-center text-2xl font-thin' 
                             value={item.qty}
-                            // value={value}
-                            // onChange={(e) => updateBasket(e)}
                             onChange={(e) => updateInputField(e, item.key)}
-                            // onFocus={() => setShown('block')}
                         />
                         <button 
                             className={`update-item text-xs mt-1.5 tracking-wider ${isShown}`} 

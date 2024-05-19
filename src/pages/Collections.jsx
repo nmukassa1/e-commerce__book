@@ -5,52 +5,53 @@ import { useEffect, useState } from 'react';
 
 function Collections() {
     const [searchParams] = useSearchParams(); // Getting URL search parameters
-    const [products, setProducts] = useState([]); // State to store products
     const [queryExist, setQueryExist] = useState(false); // State to track if query exists
-    const [collectionHeader, setCollectionHeader] = useState();
-
-    //Query Oprions: Genre, Author, Type
-    // E.g Fantasy, Jk Rowling, Fiction
-    const genreQuery = searchParams.get('genre')
-    const authorQuery = searchParams.get('author')
-    const typeQuery = searchParams.get('type')
-
+    const [products, setProducts] = useState([]); // State to store products
+    const [genre, setGenre] = useState()
+    const [title, setTitle] = useState()
+    const [type, setType] = useState()
 
     useEffect(() => {
-        //Filter catalog based on query
-        filterQuery()
-    }, [searchParams])
+        const type = searchParams.get('type'); // Getting the 'type' parameter from URL
+        setType(searchParams.get('type')); // Getting the 'type' parameter from URL
+        const genre = searchParams.get('genre'); // Getting the 'genre' parameter from URL
     
-
-    function filterQuery(){
-        let products = [];
-        if(genreQuery){
-            products = catalog.books.filter((item) => { return item.genre === genreQuery.toLowerCase()})
-            setCollectionHeader(genreQuery.charAt(0).toUpperCase() + genreQuery.slice(1))
-        } else if(authorQuery){
-            products = catalog.books.filter((item) => { return  item.author.includes(authorQuery)})
-            setCollectionHeader(authorQuery.charAt(0).toUpperCase() + authorQuery.slice(1))
-        } else if(typeQuery) {
-            products = catalog.books.filter((item) => { return item.type === typeQuery.toLowerCase()})
-            setCollectionHeader(typeQuery.charAt(0).toUpperCase() + typeQuery.slice(1))
-        } else { 
-            products = catalog.books
-            setCollectionHeader('Collections')
+        if (catalog[type]) {
+            // Extracting books based on 'genre' or 'type' from catalog
+            const productPath = genre ? catalog[type].genre[genre] : Object.values(catalog[type].genre).flat();
+            setProducts(productPath); // Updating products state with the array of products
+            setQueryExist(!!productPath);
+            console.log(genre ? `Genre is: ${genre}` : 'No genre specified.');
+        } else{
+            setProducts(Object.values(catalog)
+                .flatMap(element => Object.values(element.genre))
+                .flat()
+            );
+            setQueryExist(true)
         }
-        setProducts(products)
-    }
+
+        if(genre){
+            setTitle(genre.toUpperCase())
+        } else if(type){
+            setTitle(type.replace('_', ' ').toUpperCase())
+        }else{
+            setTitle('COLLECTION')
+        }
+    }, [searchParams]); // Running the effect when searchParams change
+    
 
     return ( 
         <div>
-            <h1 className='text-center text-xl my-4 cursor-default'>{collectionHeader}</h1>
+            <p id="collection-page-intro">An assortment of {title && (title.charAt(0).toUpperCase() + title.slice(1).toLowerCase())} books.</p>
 
-            <div className='grid lg:grid-cols-4 md:grid-cols-2'>
-                {products.map((item, index) => (
-                    <ProductCard key={index} product={item}/> 
+            {/* Render product cards */}
+            <div className='grid lg:grid-cols-4 grid-cols-2'>
+                {queryExist && products.map((item, index) => (
+                    <ProductCard key={index} product={item} type={type} /> 
                 ))}
             </div>
         </div>
      );
-    }
+}
 
 export default Collections;

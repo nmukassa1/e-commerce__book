@@ -25,7 +25,7 @@ function ProductPage() {
     return (
         <>
             {queryExist && (
-                <div id='product-section' className='h-full relative grid md:grid-cols-2'>
+                <div id='product-page'>
                     <ProductPageImage img={product.img} />
                     <ProductPageInfo data={product} />
                 </div>

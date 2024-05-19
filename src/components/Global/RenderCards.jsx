@@ -1,47 +1,68 @@
 import {Link} from 'react-router-dom'
 import AddToCartButton from '../Global/AddToCartButton'
 import ProductCard from './ProductCard';
-import { render } from 'react-dom';
-import { useState, useEffect } from 'react';
+import { Fragment } from 'react';
 
-function RenderCards({data, id, genre, renderAmount}) {
+function RenderCards({data, id, type, genreName, renderAmount}) {
 
-  const [products, setProducts] = useState()
+  let listOfProducts;
+    /* CHECK IF DATA RETURNED IS AN ARRAY SO WE CAN ITTERATE OVER IT. IF NOT THEN CONVERT OBJECT TO ARRAY */
+    let isArray; 
 
-  useEffect(() => {
-    filterQuery()
-  }, [])
+    if(id === 'fiction' || id === 'non_fiction')
+    { 
+      listOfProducts = Object.values(data[type].genre)
+      isArray = Array.isArray(data[type].genre)
+    } else {
+      listOfProducts = Object.values(data[type].genre[genreName])
+      isArray = Array.isArray(data[type].genre[genreName])
+    } 
+    
 
-  function filterQuery(){
-    let products = [];
-    if(genre) products = data.filter((item) => { return item.genre === genre.toLowerCase()})
-    products = products.slice(0 , renderAmount)
-    setProducts(products)
-  }
+    let listOfProductsArray;
+
+    if(!isArray) {
+      // Convert object to array
+      listOfProductsArray = listOfProducts.reduce((initial, current) => initial.concat(current))
+    } else {
+      listOfProductsArray = listOfProducts
+    }
 
   
 
     return ( 
-      <>
-        {products && (
-          <section id={id} className='wrapper'>
-            <div id="" className='top-bar flex justify-between px-8'>
+       <>
+         {listOfProductsArray && (
+            <section id={id} className='wrapper'>
+
+             <div id="" className='top-bar flex justify-between px-8'>
               <div id="" className='title'>
-                  <h1 className='uppercase text-xl'>{genre.toUpperCase()}</h1>
+                  <h1 className='uppercase text-xl'>{genreName.toUpperCase()}</h1>
               </div>
-              <Link to={`/collections?genre=${genre}`}>View all</Link>
-            </div>
-            
-            <div id="" className="slide grid lg:grid-cols-4 md:grid-cols-2">
-    
-              { products.map((item, i) => (
-                  <ProductCard product={item} key={i} />
-                ))
-              }
-            </div>
-          </section>
+              <Link to={`/collection?type=${type}&genre=${genreName}`}>View all</Link>
+             </div>
+              
+              <div id="" className="slide flex overflow-x-scroll lg:grid lg:grid-cols-4">
+
+                {renderAmount ? (
+                  listOfProductsArray.slice(0, Number(renderAmount)).map((item, key) => (
+                    <Fragment key={listOfProducts.key}>
+                      <ProductCard product={item}/>
+                    </Fragment>
+                  ))
+                ) :
+                  listOfProductsArray.map((item, key) => (
+                    <Fragment key={listOfProducts.key}>
+                      <ProductCard product={item}/>
+                    </Fragment>
+                  ))
+                }
+
+              </div>
+
+            </section>
         )}
-      </>
+       </>
     );
 }
 
