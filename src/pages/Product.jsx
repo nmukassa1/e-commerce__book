@@ -6,20 +6,15 @@ import ProductPageInfo from '../components/ProductPage/ProductPageInfo';
 
 function ProductPage() {
     const [searchParams] = useSearchParams(); // Getting URL search parameters
-    const [queryExist, setQueryExist] = useState(false); // State to track if query exists
     const [product, setProduct] = useState(); // State to store the product
-    
-    // Flatten the nested array in the catalog
-    const fullCatalog = Object.values(catalog)
-        .flatMap(element => Object.values(element.genre))
-        .flat();
+    const [queryExist, setQueryExist] = useState(false); // State to store the product
     
     useEffect(() => {
         const name = searchParams.get('name'); // Getting the 'name' parameter from URL
-        const productExist = fullCatalog.find(item => item.title === name);
+        const product = catalog.books.filter((item) => {return item.title === name})
 
-        if (productExist) {
-            setProduct(productExist);
+        if (product) {
+            setProduct(product[0]);
             setQueryExist(true);
         } else {
             setQueryExist(false);

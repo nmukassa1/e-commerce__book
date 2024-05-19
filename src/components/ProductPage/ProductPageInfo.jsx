@@ -16,6 +16,7 @@ function BookPageProductInfo({data}) {
 
     // const [addToCart] = useOutletContext()
 
+    console.log();
     
 
     return ( 
