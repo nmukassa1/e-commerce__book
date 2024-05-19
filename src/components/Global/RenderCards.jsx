@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import AddToCartButton from '../Global/AddToCartButton'
 import ProductCard from './ProductCard';
-import { render } from 'react-dom';
+import { Fragment } from 'react';
 
 function RenderCards({data, id, type, genreName, renderAmount}) {
 
@@ -39,20 +39,22 @@ function RenderCards({data, id, type, genreName, renderAmount}) {
               <div id="" className='title'>
                   <h1 className='uppercase text-xl'>{genreName.toUpperCase()}</h1>
               </div>
-              {/* <Link to={`/view-all/${type}/${genreName}`}>View all</Link> */}
               <Link to={`/collection?type=${type}&genre=${genreName}`}>View all</Link>
              </div>
               
-              {/* <div id="" className="slide grid lg:grid-cols-4 md:grid-cols-2"> */}
               <div id="" className="slide flex overflow-x-scroll lg:grid lg:grid-cols-4">
 
                 {renderAmount ? (
                   listOfProductsArray.slice(0, Number(renderAmount)).map((item, key) => (
-                    <ProductCard product={item} />
+                    <Fragment key={listOfProducts.key}>
+                      <ProductCard product={item}/>
+                    </Fragment>
                   ))
                 ) :
                   listOfProductsArray.map((item, key) => (
-                    <ProductCard product={item} />
+                    <Fragment key={listOfProducts.key}>
+                      <ProductCard product={item}/>
+                    </Fragment>
                   ))
                 }
 

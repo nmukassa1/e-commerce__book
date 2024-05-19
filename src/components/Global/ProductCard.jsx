@@ -1,10 +1,10 @@
 import {Link} from 'react-router-dom'
 
-function ProductCard({product, type}) {
+function ProductCard({product}) {
     return ( 
-        <Link to={`/product?name=${product.title}`} onClick={() => {localStorage.setItem('data', JSON.stringify(product))}} key={product.key} className="product-card grow shrink-0 basis-[160px] border-solid border border-black grow shrink-0">
+        <Link to={`/product?name=${product.title}`} onClick={() => {localStorage.setItem('data', JSON.stringify(product))}} className="product-card grow shrink-0 basis-[160px] border-solid border border-black grow shrink-0">
 
-          <div id="" className="book-img w-full border-solid border border-black py-5 bg-[#F7F7F7]">
+          <div className="book-img w-full border-solid border border-black py-5 bg-[#F7F7F7]">
             <img src={product.img} alt="" className="product-card__img w-3/4 h-full object-contain mx-auto aspect-ratio-[.8]"/>
           </div>
 
@@ -13,9 +13,6 @@ function ProductCard({product, type}) {
               <div id="book-title">
                 <h1 className='overflow-y-scroll '>{product.title}</h1>
               </div>
-              {/* <div className="book-author">
-                <h3>{product.author.join(' & ')}</h3>
-              </div> */}
               <div className="book-price">
                 <span>£{product.price}</span>
               </div>
